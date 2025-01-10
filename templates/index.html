@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime_tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="form-container">
+            <form method="POST">
+                <label for="userInput"><h1 style="color: black;">Enter the name of the anime</label>
+                <input type="text" id="userInput" name="userInput" required>
+                <button type="submit">Submit</button> 
+            </form>
+    </div>
+
+    {% if data %}
+        <h2 class="result-title">Results:</h2>
+        <div class="result-container">
+            <img src="{{ data['data']['Media']['coverImage']['large'] }}" alt="Cover Image" class="result-image">
+            <div class="result-details">
+                <p class="result-title">{{ data['data']['Media']['title']['romaji'] }}</p>
+                <p class="result-rating"><strong>Score:</strong> <span class="result-text">{{ data['data']['Media']['averageScore'] }}</span></p>
+                <p><strong>Episodes:</strong> <span class="result-text">{{ data['data']['Media']['episodes'] }}</span></p>
+                <div class="result-description">
+                    <strong>Description:</strong>
+                    <p class="result-text">{{ data['data']['Media']['description']|safe }}</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</body>
+</html>
