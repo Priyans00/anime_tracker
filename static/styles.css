@@ -7,17 +7,46 @@ body {
     font-size: 16px;
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
+/* Header Styling */
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+/* Navigation Styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
 }
 
 /* Form Styles */
 .form-container {
-    background: rgb(89, 0, 255);
+    background: #ffffff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgb(7, 240, 62);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 label {
@@ -49,31 +78,35 @@ button:hover {
     background-color: #4cae4c;
 }
 
-
+/* Result Container */
 .result-container {
     display: flex;
-    background: rgb(0, 47, 255);
+    align-items: flex-start;
+    background: #ffffff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
 }
 
 .result-image {
-    max-width: 1000px;
+    max-width: 200px;
     height: auto;
     border-radius: 5px;
     margin-right: 20px;
+    margin-bottom: 10px;
+    padding: 20px;
 }
 
 .result-details {
-    flex: 1;
+    flex: 29;
+    padding: 20px;
 }
 
 .result-title {
-    color: #333;
+    color: #35424a;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 1.5em;
     margin-bottom: 10px;
 }
 
@@ -85,7 +118,7 @@ button:hover {
 
 .result-description {
     background: #f9f9f9;
-    padding: 15px;
+    padding: 20px;
     border-radius: 5px;
     margin-top: 10px;
     font-size: 1.1em;
@@ -98,10 +131,13 @@ button:hover {
     font-size: 1.1em;
 }
 
-
-.profile-container {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #35424a;
+    color: #ffffff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 } 

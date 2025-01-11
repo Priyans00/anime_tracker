@@ -3,32 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime_tracker</title>
+    <title>Aniweeb - Anime Tracker</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="form-container">
-            <form method="POST">
-                <label for="userInput"><h1 style="color: black;">Enter the name of the anime</label>
-                <input type="text" id="userInput" name="userInput" required>
-                <button type="submit">Submit</button> 
-            </form>
-    </div>
+    <header>
+        <h1>Track Your Anime</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/tracker">Track Your Anime</a></li>
+                <li><a href="/news">Anime News</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    {% if data %}
-        <h2 class="result-title">Results:</h2>
+    <div class="container">
+        <div class="form-container">
+            <form method="POST" action="/tracker">
+                <label for="userInput">Enter Anime Name:</label>
+                <input type="text" id="userInput" name="userInput" required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        {% if data %}
         <div class="result-container">
-            <img src="{{ data['data']['Media']['coverImage']['large'] }}" alt="Cover Image" class="result-image">
+            <div class="result-image">
+                <img src="{{ data['data']['Media']['coverImage']['large'] }}" alt="{{ data['data']['Media']['title']['romaji'] }}">
+            </div>
             <div class="result-details">
-                <p class="result-title">{{ data['data']['Media']['title']['romaji'] }}</p>
-                <p class="result-rating"><strong>Score:</strong> <span class="result-text">{{ data['data']['Media']['averageScore'] }}</span></p>
-                <p><strong>Episodes:</strong> <span class="result-text">{{ data['data']['Media']['episodes'] }}</span></p>
-                <div class="result-description">
-                    <strong>Description:</strong>
-                    <p class="result-text">{{ data['data']['Media']['description']|safe }}</p>
-                </div>
+                <h2 class="result-title">{{ data['data']['Media']['title']['romaji'] }}</h2>
+                <p class="result-rating">Average Score: {{ data['data']['Media']['averageScore'] }}</p>
+                <p class="result-text">Episodes: {{ data['data']['Media']['episodes'] }}</p>
+                <p class="result-text">Genres: {{ data['data']['Media']['genres'] | join(', ') }}</p>
+                <p class="result-description">{{ data['data']['Media']['description'] | safe }}</p>
             </div>
         </div>
-    {% endif %}
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Aniweeb. All rights reserved.</p>
+    </footer>
 </body>
 </html>

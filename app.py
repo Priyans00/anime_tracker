@@ -28,7 +28,12 @@ def fetch_anime_details(anime_name):
     response = requests.post(url, json={"query": query, "variables": variables})
     return response.json()
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/',methods=['GET','POST'])
+def home():
+    return render_template('home.html')
+
+
+@app.route('/tracker', methods=['GET', 'POST'])
 def index():
     data = None
     if request.method == 'POST':

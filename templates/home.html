@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniweeb - Your Anime Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home_styles.css') }}"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to Aniweeb</h1>
+        <nav>
+            <ul>
+                <li><a href="/news">Anime News</a></li>
+                <li><a href="/tracker">Track Your Anime</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="info">
+        <h2>About Aniweeb</h2>
+        <p>Your one-stop destination for all things anime! Stay updated with the latest news and track your favorite shows.</p>
+    </section>
+
+    <section id="news">
+        <h2>Latest Anime News</h2>
+        <div class="option-box">
+            <p>Check out the latest updates in the anime world!</p>
+            <!-- You can add news articles or links here -->
+        </div>
+    </section>
+
+    <section id="tracker">
+        <h2>Track Your Anime</h2>
+        <div class="option-box">
+            <p>Keep track of the anime you are watching, plan to watch, or have completed.</p>
+            <!-- You can add tracking options or links here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Aniweeb. All rights reserved.</p>
+    </footer>
+</body>
+</html>
