@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aniweeb - character search</title>
+    <title>Aniweeb - Character Search</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
 </head>
 <body>
     <header>
-        <h1>Track Your Anime</h1>
+        <h1>Track Your Anime Characters</h1>
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -27,27 +28,65 @@
             </form>
         </div>
 
-        {% if data %}
-        <div class="result-container">
-            <div class="result-image">
-                <img src="{{ data['data']['Character']['image']['large'] }}" alt="{{ data['data']['Character']['name']['full'] }}">
-            </div>
-            <div class="result-details">
-                <h2 class="result-title"> Full name :{{ data['data']['Character']['name']['full'] }}</h2>
-                <p class="result-title"> Alternate names :{{ data['data']['Character']['name']['alternative'] | join(', ') }}</p><br>
-                <p class="result-rating">Age: {{ data['data']['Character']['age'] }}</p><br>
-                <p class="result-text">Date Of Birth: {{ data['data']['Character']['dateOfBirth'] | join(', ') }}</p><br>
-                <p class="result-text">Gender: {{ data['data']['Character']['gender']  }}</p><br>
-                <p class="result-text">Blood Group: {{ data['data']['Character']['bloodType'] }}</p><br>
-                <p class="result-text">Favourite: {{ data['data']['Character']['favourites'] }}</p><br>
-                <p class="result-description">{{ data['data']['Character']['description'] | safe }}</p>
-            </div>
-        </div>
+        {% if data and data['data'] is not none %}
+            {% if data['data'].get('Page') and data['data']['Page'].get('characters') %}
+                <div class="result-scroll-container">
+                    <div class="result-container">
+                        {% for character in data['data']['Page']['characters'] %}
+                            <div class="result-item" onclick="openModal('{{ character['name']['full'] }}', '{{ character['name']['alternative'] | join(', ') }}', '{{ character['age'] }}', '{{ character['description'] | safe }}', '{{ character['image']['large'] }}')">
+                                <div class="result-image">
+                                    <img src="{{ character['image']['large'] }}" alt="{{ character['name']['full'] }}">
+                                </div>
+                                <h2 class="result-title">{{ character['name']['full'] }}</h2>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                <p>No character details found. Please try a different name.</p>
+            {% endif %}
+        {% else %}
+            <p>No data received from the API. Please check your request.</p>
         {% endif %}
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-alternate-names"></p>
+            <p id="modal-age"></p>
+            <img id="modal-image" src="" alt="" style="max-width: 100%;">
+            <p id="modal-description"></p>
+        </div>
     </div>
 
     <footer>
         <p>&copy; 2023 Aniweeb. All rights reserved.</p>
     </footer>
+
+    <script>
+    function openModal(name, alternateNames, age, description, image) {
+        console.log("Opening modal for", name);
+        document.getElementById("modal-title").innerText = name;
+        document.getElementById("modal-alternate-names").innerText = "Alternate Names: " + alternateNames;
+        document.getElementById("modal-age").innerText = "Age: " + age;
+        document.getElementById("modal-description").innerHTML = description;
+        document.getElementById("modal-image").src = image;
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("myModal")) {
+            closeModal();
+        }
+    }
+    </script>
 </body>
 </html>

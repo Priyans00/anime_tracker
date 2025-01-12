@@ -27,24 +27,66 @@
             </form>
         </div>
 
-        {% if data %}
-        <div class="result-container">
-            <div class="result-image">
-                <img src="{{ data['data']['Media']['coverImage']['large'] }}" alt="{{ data['data']['Media']['title']['romaji'] }}">
-            </div>
-            <div class="result-details">
-                <h2 class="result-title">{{ data['data']['Media']['title']['romaji'] }}</h2>
-                <p class="result-rating">Average Score: {{ data['data']['Media']['averageScore'] }}</p>
-                <p class="result-text">Episodes: {{ data['data']['Media']['episodes'] }}</p>
-                <p class="result-text">Genres: {{ data['data']['Media']['genres'] | join(', ') }}</p>
-                <p class="result-description">{{ data['data']['Media']['description'] | safe }}</p>
+        {% if data and data['data'] is not none and data['data'].get('Page') and data['data']['Page'].get('media') %}
+        <div class="result-scroll-container">
+            <div class="result-container">
+                {% for anime in data['data']['Page']['media'] %}
+                    <div class="anime-item" onclick="openModal('{{ anime['title']['romaji'] }}', '{{ anime['coverImage']['large'] }}', '{{ anime['description'] | safe }}', '{{ anime['averageScore'] }}', '{{ anime['episodes'] }}', '{{ anime['genres'] | join(', ') }}', '{{ anime['season'] }}')">
+                        <div class="result-image">
+                            <img src="{{ anime['coverImage']['large'] }}" alt="{{ anime['title']['romaji'] }}">
+                        </div>
+                        <h2 class="result-title">{{ anime['title']['romaji'] }}</h2>
+                    </div>
+                {% endfor %}
             </div>
         </div>
+        {% else %}
+        <p>No anime details found. Please try a different name.</p>
         {% endif %}
+    </div>
+
+    <!-- Modal for displaying detailed information -->
+    <div id="animeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="">
+            </div>
+            <p><strong>Average Score:</strong> <span id="modalScore"></span></p>
+            <p><strong>Episodes:</strong> <span id="modalEpisodes"></span></p>
+            <p><strong>Genres:</strong> <span id="modalGenres"></span></p>
+            <p><strong>Season:</strong> <span id="modalSeason"></span></p>
+            <p id="modalDescription"></p>
+        </div>
     </div>
 
     <footer>
         <p>&copy; 2023 Aniweeb. All rights reserved.</p>
     </footer>
+
+    <script>
+    function openModal(title, image, description, score, episodes, genres, season) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalImage').src = image;
+        document.getElementById('modalScore').innerText = score || 'N/A';
+        document.getElementById('modalEpisodes').innerText = episodes || 'N/A';
+        document.getElementById('modalGenres').innerText = genres || 'N/A';
+        document.getElementById('modalSeason').innerText = season || 'N/A';
+        document.getElementById('modalDescription').innerHTML = description || 'No description available.';
+        document.getElementById('animeModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('animeModal').style.display = 'none';
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('animeModal')) {
+            closeModal();
+        }
+    }
+    </script>
 </body>
 </html>
