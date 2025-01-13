@@ -53,7 +53,6 @@ def fetch_character_details(character_name):
         bloodType
         name {
           alternative
-          alternativeSpoiler
           full
         }
         } 
