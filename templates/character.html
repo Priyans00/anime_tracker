@@ -32,7 +32,7 @@
                 <div class="result-scroll-container">
                     <div class="result-container">
                         {% for character in data['data']['Page']['characters'] %}
-                            <div class="result-item" onclick="openModal(`{{ character['name']['full'] }}`, `{{ character['name']['alternative'] | join(', ') }}`, `{{ character['age'] }}`, `{{ character['description'] | replace("'","\\'") | replace('"','\\"') |safe | e }}`, `{{ character['image']['large'] }}`)">
+                            <div class="result-item" onclick="openModal(`{{ character['name']['full'] }}`, `{{ character['name']['alternative'] | join(', ') }}`, `{{ character['age'] }}`, `{{ character['description'] | replace("'","\\'") | replace('\"','\\"') | e }}`, `{{ character['image']['large'] }}`)">
                                 <div class="result-image">
                                     <img src="{{ character['image']['large'] }}" alt="{{ character['name']['full'] }}">
                                 </div>

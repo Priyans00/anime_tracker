@@ -62,3 +62,36 @@ def fetch_character_details(character_name):
     variables = {"search": character_name}
     response = requests.post(url, json={"query": query, "variables": variables})
     return response.json()
+
+#for fetching anime news details 
+def fetch_anime_news(anime_year):
+    url = "https://graphql.anilist.co"
+    query = """
+    query ($seasonYear: Int, $sort: [MediaSort]) {
+      Page( page:1,perPage: 20) {
+        media( seasonYear: $seasonYear, type: ANIME,sort:$sort) {
+          id
+          title {
+            romaji
+            english
+          }
+          startDate {
+            year
+            month
+            day
+          }
+          coverImage {
+            large
+          }
+          genres
+          endDate {
+            year
+            month
+            day
+          }
+        }
+      }
+    }"""
+    variables = {"seasonYear": anime_year,"sort": ["POPULARITY_DESC"]}
+    response = requests.post(url, json={"query": query, "variables": variables})
+    return response.json()

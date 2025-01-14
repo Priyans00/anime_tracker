@@ -25,5 +25,14 @@ def character():
         data = fetch_character_details(character_name)
     return render_template('character.html',data=data)
 
+@app.route('/news',methods=['GET','POST'])
+def news():
+    data = None 
+    if request.method == 'POST':
+        year = request.form['userInput']
+        data = fetch_anime_news(year)
+        print(data)
+    return render_template('news.html',data=data)
+
 if __name__ == '__main__':
     app.run(debug=True)

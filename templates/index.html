@@ -31,7 +31,7 @@
         <div class="result-scroll-container">
             <div class="result-container">
                 {% for anime in data['data']['Page']['media'] %}
-                    <div class="anime-item" onclick="openModal(`{{ anime['title']['romaji'] }}`, `{{ anime['coverImage']['large'] }}`, `{{ anime['description'] | safe }}`, `{{ anime['averageScore'] }}`, `{{ anime['episodes'] }}`, `{{ anime['genres'] | join(', ') }}`, `{{ anime['season'] }}`)">
+                    <div class="anime-item" onclick="openModal(`{{ anime['title']['romaji'] }}`, `{{ anime['coverImage']['large'] }}`, `{{ anime['description'] | replace("'","\'") | replace('"','\"') | e }}`, `{{ anime['averageScore'] }}`, `{{ anime['episodes'] }}`, `{{ anime['genres'] | join(', ') }}`, `{{ anime['season'] }}`)">
                         <div class="result-image">
                             <img src="{{ anime['coverImage']['large'] }}" alt="{{ anime['title']['romaji'] }}">
                         </div>

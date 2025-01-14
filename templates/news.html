@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniweeb - News</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='news.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Track Your Anime Year Wise</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/tracker">Track Your Anime</a></li>
+                <li><a href="/news">Anime News</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <form method="POST" action="/news">
+                <label for="userInput">Enter Year:</label>
+                <input type="number" id="userInput" name="userInput" required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        {% if data is none %}
+            <p>Data is None. Please check the backend response.</p>
+        {% elif data['data'] is none %}
+            <p>Data key is None. Please check the API response structure.</p>
+        {% elif data['data'].get('Page') is none %}
+            <p>Page key is None. Please check the API response structure.</p>
+        {% elif data['data']['Page'].get('media') is none %}
+            <p>Media key is None. Please check the API response structure.</p>
+        {% else %}
+            <div class="result-scroll-container">
+                <div class="result-container">
+                    {% for news in data['data']['Page']['media'] %}
+                        <div class="result-item" onclick="openModal(`{{ news['title']['romaji'] }}`, `{{ news['title']['english'] }}`, `{{ news['startDate']['year'] }}-{{ news['startDate']['month'] }}-{{ news['startDate']['day'] }}`, `{{ news['genres'] | join(', ') }}`, `{{ news['coverImage']['large'] }}`, `{{ news['endDate']['year'] }}-{{ news['endDate']['month'] }}-{{ news['endDate']['day'] }}`  )">
+                            <div class="result-image">
+                                <img src="{{ news['coverImage']['large'] }}" alt="{{ news['title']['romaji'] }}">
+                            </div>
+                            <h2 class="result-title">{{ news['title']['english'] }}</h2>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title-r"></h2>
+            <h2 id="modal-title-e"></h2>
+            <p id="modal-startDate"></p>
+            <p id="modal-endDate"></p>
+            <p id="modal-genres"></p>
+            <img id="modal-image" src="" alt="" style="max-width: 100%;">
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Aniweeb. All rights reserved.</p>
+    </footer>
+
+    <script>
+    function openModal(name_r, name_e, startDate, genres, coverImage, endDate) {
+        console.log("Opening modal for", name_e);
+        document.getElementById("modal-title-r").innerText = name_r;
+        document.getElementById("modal-title-e").innerText = name_e;
+        document.getElementById("modal-genres").innerText = "Genres: " + genres;
+        document.getElementById("modal-startDate").innerText = "Start Date: " + startDate;
+        document.getElementById("modal-endDate").innerText = "End Date: " + (endDate || 'Ongoing');
+        document.getElementById("modal-image").src = coverImage;
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("myModal")) {
+            closeModal();
+        }
+    }
+    </script>
+</body>
+</html>
