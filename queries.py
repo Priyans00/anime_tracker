@@ -68,7 +68,7 @@ def fetch_anime_news(anime_year):
     url = "https://graphql.anilist.co"
     query = """
     query ($seasonYear: Int, $sort: [MediaSort]) {
-      Page( page:1,perPage: 20) {
+      Page( page:1,perPage: 40) {
         media( seasonYear: $seasonYear, type: ANIME,sort:$sort) {
           id
           title {
@@ -94,4 +94,24 @@ def fetch_anime_news(anime_year):
     }"""
     variables = {"seasonYear": anime_year,"sort": ["POPULARITY_DESC"]}
     response = requests.post(url, json={"query": query, "variables": variables})
+    return response.json()
+
+#for fetching trending animes
+def fetch_pics():
+    url = "https://graphql.anilist.co"
+    query = """
+    query jjh{
+      Page(page:1, perPage: 40) {
+        media( , type: ANIME, sort: [POPULARITY_DESC], ) {
+          title {
+            romaji
+            english
+          }
+          coverImage {
+            large
+          }
+        }
+      }
+    }"""
+    response = requests.post(url, json={"query": query})
     return response.json()

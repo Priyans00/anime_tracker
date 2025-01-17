@@ -27,6 +27,7 @@
     <section id="news">
         <h2>Latest Anime News</h2>
         <div class="option-box">
+            <a href="/news">Anime News</a>
             <p>Check out the latest updates in the anime world!</p>
             <!-- You can add news articles or links here -->
         </div>
@@ -34,11 +35,33 @@
 
     <section id="tracker">
         <h2>Track Your Anime</h2>
+        <a href="/tracker">Track Your Anime</a>
         <div class="option-box">
             <p>Keep track of the anime you are watching, plan to watch, or have completed.</p>
             <!-- You can add tracking options or links here -->
         </div>
     </section>
+
+    <section>
+        {% if data and data['data'] is not none and data['data'].get('Page') and data['data']['Page'].get('media') %}
+        <div class="result-scroll-container">
+            <div class="result-container">
+                {% for anime in data['data']['Page']['media'] %}
+                    <div class="pics-container">
+                        <div class="result-image">
+                            <img src="{{ anime['coverImage']['large'] }}" alt="{{ anime['title']['romaji'] }}">
+                        </div>
+                        <h3 class="result-title">{{ anime['title']['romaji'] }}</h3>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <p>No anime details found. Please try a different name.</p>
+        {% endif %}
+    </section>
+        
+
 
     <footer>
         <p>&copy; 2023 Aniweeb. All rights reserved.</p>

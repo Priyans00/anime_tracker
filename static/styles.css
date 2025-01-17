@@ -111,11 +111,18 @@ button:hover {
 }
 
 .result-image {
-    width: 100%; /* Limit image size to fit the container */
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px; /* Space below the image */
-    object-fit: cover; /* Ensure the image covers the container */
+    width: 100%; /* Make the image container full width */
+    height: 200px; /* Set a fixed height for uniformity */
+    overflow: hidden; /* Hide overflow to maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+}
+.result-image img {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the container while maintaining aspect ratio */
 }
 
 /* Modal Styles */

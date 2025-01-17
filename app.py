@@ -6,8 +6,10 @@ app = Flask(__name__)
 
 @app.route('/',methods=['GET','POST'])
 def home():
-    return render_template('home.html')
-
+    data = None
+    if request.method == 'GET':
+        data = fetch_pics()
+    return render_template('home.html',data=data)
 
 @app.route('/tracker', methods=['GET', 'POST'])
 def index():
@@ -31,7 +33,6 @@ def news():
     if request.method == 'POST':
         year = request.form['userInput']
         data = fetch_anime_news(year)
-        print(data)
     return render_template('news.html',data=data)
 
 if __name__ == '__main__':
