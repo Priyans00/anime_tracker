@@ -45,6 +45,50 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
+.pics-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    margin: 10px; /* Space between items */
+    padding: 10px; /* Padding around each item */
+    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+    cursor: pointer; /* Indicate that the item is clickable */
+    width: calc(100% / 3 - 20px); /* Responsive width for larger screens */
+    max-width: 200px; /* Set a maximum width for better responsiveness */
+    transition: transform 0.2s; /* Smooth scaling effect */
+}
+
+.pics-container:hover {
+    transform: scale(1.05); /* Scale up on hover for emphasis */
+}
+.result-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: center; /* Center items horizontally */
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.result-image {
+    width: 100%; /* Make the image container full width */
+    height: 200px; /* Set a fixed height for uniformity */
+    overflow: hidden; /* Hide overflow to maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+}
+.result-image img {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the container while maintaining aspect ratio */
+}
+
 /* Section styling */
 section {
     padding: 20px;
@@ -110,5 +154,11 @@ footer {
 
     .option-box {
         padding: 10px; /* Reduce padding in option boxes */
+    }
+}
+
+@media (max-width: 768px) {
+    .anime-item {
+        width: calc(100% - 20px); /* Full width on smaller screens */
     }
 }

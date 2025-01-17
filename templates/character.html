@@ -32,7 +32,7 @@
                 <div class="result-scroll-container">
                     <div class="result-container">
                         {% for character in data['data']['Page']['characters'] %}
-                            <div class="result-item" onclick="openModal(`{{ character['name']['full'] }}`, `{{ character['name']['alternative'] | join(', ') }}`, `{{ character['age'] }}`, `{{ character['description'] | replace("'","\\'") | replace('\"','\\"') | e }}`, `{{ character['image']['large'] }}`)">
+                            <div class="result-item" onclick="openModal(`{{ character['name']['full'] }}`, `{{character['dateOfBirth']}}`, `{{ character['name']['alternative'] | join(', ') }}`, `{{ character['age'] }}`, `{{ character['description'] | replace("'","\\'") | replace('\"','\\"') | e }}`, `{{ character['image']['large'] }}`)">
                                 <div class="result-image">
                                     <img src="{{ character['image']['large'] }}" alt="{{ character['name']['full'] }}">
                                 </div>
@@ -54,6 +54,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2 id="modal-title"></h2>
+            <p id="modal-dateOfBirth"></p>
             <p id="modal-alternate-names"></p>
             <p id="modal-age"></p>
             <img id="modal-image" src="" alt="" style="max-width: 100%;">
@@ -62,13 +63,14 @@
     </div>
 
     <footer>
-        <p>&copy; 2023 Aniweeb. All rights reserved.</p>
+        <p>&copy; 2025 Aniweeb. All rights reserved.</p>
     </footer>
 
     <script>
-    function openModal(name, alternateNames, age, description, image) {
+    function openModal(name, dateOfBirth, alternateNames, age, description, image) {
         console.log("Opening modal for", name);
         document.getElementById("modal-title").innerText = name;
+        document.getElementById("modal-dateOfBirth").innerText = "Date of Birth: " + dateOfBirth;
         document.getElementById("modal-alternate-names").innerText = "Alternate Names: " + alternateNames;
         document.getElementById("modal-age").innerText = "Age: " + age;
         document.getElementById("modal-description").innerHTML = description;
