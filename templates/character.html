@@ -32,7 +32,7 @@
                 <div class="result-scroll-container">
                     <div class="result-container">
                         {% for character in data['data']['Page']['characters'] %}
-                            <div class="result-item" onclick="openModal(`{{ character['name']['full'] }}`, `{{character['dateOfBirth']}}`, `{{ character['name']['alternative'] | join(', ') }}`, `{{ character['age'] }}`, `{{ character['description'] | replace("'","\\'") | replace('\"','\\"') | e }}`, `{{ character['image']['large'] }}`)">
+                            <div class="result-item" onclick="openModal(`{{ character['name']['full'] }}`, `{{character['dateOfBirth']}}`, `{{ character['name']['alternative'] | join(', ') }}`, `{{ character['age'] }}`, `{{ character['gender'] }}`, `{{ character['description'] | replace("'","\\'") | replace('\"','\\"') | e }}`, `{{ character['image']['large'] }}`)">
                                 <div class="result-image">
                                     <img src="{{ character['image']['large'] }}" alt="{{ character['name']['full'] }}">
                                 </div>
@@ -57,6 +57,7 @@
             <p id="modal-dateOfBirth"></p>
             <p id="modal-alternate-names"></p>
             <p id="modal-age"></p>
+            <p id="modal-gender"></p>
             <img id="modal-image" src="" alt="" style="max-width: 100%;">
             <p id="modal-description"></p>
         </div>
@@ -67,12 +68,13 @@
     </footer>
 
     <script>
-    function openModal(name, dateOfBirth, alternateNames, age, description, image) {
+    function openModal(name, dateOfBirth, alternateNames, age, gender, description, image) {
         console.log("Opening modal for", name);
         document.getElementById("modal-title").innerText = name;
         document.getElementById("modal-dateOfBirth").innerText = "Date of Birth: " + dateOfBirth;
         document.getElementById("modal-alternate-names").innerText = "Alternate Names: " + alternateNames;
         document.getElementById("modal-age").innerText = "Age: " + age;
+        document.getElementById("modal-gender").innerText = "Gender: " + gender;
         document.getElementById("modal-description").innerHTML = description;
         document.getElementById("modal-image").src = image;
         document.getElementById("myModal").style.display = "block";
