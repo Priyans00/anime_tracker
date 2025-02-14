@@ -1,18 +1,15 @@
-/* Reset some default styles */
 body, h1, h2, p {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
-/* Body styling */
 body {
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
 }
 
-/* Header styling */
 header {
     background: #35424a;
     color: #ffffff;
@@ -24,7 +21,6 @@ header h1 {
     margin-bottom: 10px;
 }
 
-/* Navigation styling */
 nav ul {
     list-style: none;
     padding: 0;
@@ -46,27 +42,27 @@ nav ul li a:hover {
 }
 
 .pics-container {
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
-    margin: 10px; /* Space between items */
-    padding: 10px; /* Padding around each item */
-    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
-    cursor: pointer; /* Indicate that the item is clickable */
-    width: calc(100% / 3 - 20px); /* Responsive width for larger screens */
-    max-width: 200px; /* Set a maximum width for better responsiveness */
-    transition: transform 0.2s; /* Smooth scaling effect */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    width: calc(100% / 3 - 20px);
+    max-width: 200px;
+    transition: transform 0.2s;
 }
 
 .pics-container:hover {
-    transform: scale(1.05); /* Scale up on hover for emphasis */
+    transform: scale(1.05);
 }
 .result-container {
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    justify-content: center; /* Center items horizontally */
+    flex-wrap: wrap;
+    justify-content: center;
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
@@ -75,21 +71,20 @@ nav ul li a:hover {
 }
 
 .result-image {
-    width: 100%; /* Make the image container full width */
-    height: 200px; /* Set a fixed height for uniformity */
-    overflow: hidden; /* Hide overflow to maintain aspect ratio */
-    border-radius: 5px; /* Rounded corners */
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically */
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .result-image img {
-    width: 100%; /* Make the image responsive */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Cover the container while maintaining aspect ratio */
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
-/* Section styling */
 section {
     padding: 20px;
     margin: 20px;
@@ -105,7 +100,6 @@ section h2 {
     color: #35424a;
 }
 
-/* New box styling for options */
 .option-box {
     background: #e9ecef;
     border: 1px solid #ccc;
@@ -116,7 +110,6 @@ section h2 {
     text-align: center;
 }
 
-/* Footer styling */
 footer {
     text-align: center;
     padding: 10px 0;
@@ -127,38 +120,37 @@ footer {
     width: 100%;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
     nav ul li {
-        display: block; /* Stack navigation items vertically */
-        margin: 10px 0; /* Add margin for spacing */
+        display: block;
+        margin: 10px 0;
     }
 
     .option-box {
-        width: 90%; /* Make option boxes wider on smaller screens */
+        width: 90%;
     }
 
     section {
-        margin: 10px; /* Reduce margin for sections */
+        margin: 10px;
     }
 }
 
 @media (max-width: 480px) {
     header h1 {
-        font-size: 1.5em; /* Smaller font size for header */
+        font-size: 1.5em;
     }
 
     section h2 {
-        font-size: 1.2em; /* Smaller font size for section headings */
+        font-size: 1.2em;
     }
 
     .option-box {
-        padding: 10px; /* Reduce padding in option boxes */
+        padding: 10px;
     }
 }
 
 @media (max-width: 768px) {
     .anime-item {
-        width: calc(100% - 20px); /* Full width on smaller screens */
+        width: calc(100% - 20px);
     }
 }
