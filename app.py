@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-import requests
 from queries import*
 
 app = Flask(__name__)
@@ -35,5 +34,4 @@ def news():
         data = fetch_anime_news(year)
     return render_template('news.html',data=data)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+

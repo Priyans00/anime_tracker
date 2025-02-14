@@ -44,6 +44,7 @@ def fetch_character_details(character_name):
           year
           month
         }
+        gender
         image {
           large
         }
