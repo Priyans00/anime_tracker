@@ -49,7 +49,6 @@
         {% endif %}
     </div>
 
-    <!-- Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -84,7 +83,6 @@
         document.getElementById("myModal").style.display = "none";
     }
 
-    // Close the modal when clicking outside of it
     window.onclick = function(event) {
         if (event.target == document.getElementById("myModal")) {
             closeModal();
